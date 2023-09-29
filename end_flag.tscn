@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://hc84538stqjy"]
+
+[ext_resource type="Script" path="res://EndFlag.gd" id="1_onfpg"]
+[ext_resource type="ArrayMesh" uid="uid://cx3dwltkgs56g" path="res://Models/flag.obj" id="2_m4sbq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2agqm"]
+size = Vector3(1, 1, 0.164532)
+
+[node name="EndFlag" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.612386, 1.69542, 0)
+script = ExtResource("1_onfpg")
+next_scene = "res://Level1.tscn"
+
+[node name="Model" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_m4sbq")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.241974, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285766, 0.473554, 0)
+shape = SubResource("BoxShape3D_2agqm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
